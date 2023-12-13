@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_reader.c                                      :+:      :+:    :+:   */
+/*   list_to_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 22:27:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 16:42:17 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 15:25:26 by dshatilo          #+#    #+#             */
+/*   Updated: 2023/12/13 19:54:11 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-t_map	*file_reader(char *filename)
+t_map	*list_to_map(t_list **list, size_t size_x)
 {
 	t_map	*map;
-	t_list	*all_lines;
-	size_t	size_x;
+	size_t	size_y;
 
-	all_lines = create_list(filename);
-	if (!all_lines)
-		exit(0);
-	size_x = convert_lines_to_int_arrays(&all_lines);
-	map = list_to_map(&all_lines, size_x);
+	map = (t_map *)malloc(sizeof(t_map) * 1);
+	if (!map)
+	{
+		ft_lstclear(list, free);
+		exit(1);
+	}
+	size_y = ft_lstsize(*list);
+	map->field = list_to_int_arrays(list, map, size_y);
+	map->size_x = size_x;
+	map->size_y = size_y;
 	return (map);
 }
+

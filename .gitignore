@@ -3,3 +3,6 @@ libft/
 .vscode
 *.out
 .DS_Store
+fdf.dSYM/
+fdf
+*.fdf

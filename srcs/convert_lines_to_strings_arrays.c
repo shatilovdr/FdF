@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_reader.c                                      :+:      :+:    :+:   */
+/*   convert_lines_to_strings_arrays.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 22:27:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 16:42:17 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 14:28:56 by dshatilo          #+#    #+#             */
+/*   Updated: 2023/12/13 14:34:15 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_map	*file_reader(char *filename)
+void	convert_lines_to_strings_arrays(t_list **all_lines)
 {
-	t_map	*map;
-	t_list	*all_lines;
-	size_t	size_x;
+	t_list	*curr;
+	char	**strings_array;
 
-	all_lines = create_list(filename);
-	if (!all_lines)
-		exit(0);
-	size_x = convert_lines_to_int_arrays(&all_lines);
-	map = list_to_map(&all_lines, size_x);
-	return (map);
+	curr = *all_lines;
+	while (curr)
+	{
+		strings_array = ft_split((char *)curr->content, ' ');
+		if (!strings_array)
+			clear_tlist_mixed(all_lines, curr, free_strings_array, free);
+		free(curr->content);
+		curr->content = strings_array;
+		curr = curr->next;
+	}
 }
