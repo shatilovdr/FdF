@@ -1,0 +1,5 @@
+libft/
+*.pdf
+.vscode
+*.out
+.DS_Store
