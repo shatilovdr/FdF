@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:38:37 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 20:41:01 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:47:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	convert_strings_arrays_to_int_arrays(t_list **all_lines, size_t len)
 	curr = *all_lines;
 	while (curr)
 	{
-		int_arr = check_strings_array(len, (char **)curr->content); //FAIL
+		int_arr = check_strings_array(len, (char **)curr->content);
 		if (!int_arr)
 			clear_tlist_mixed(all_lines, curr, free, free_strings_array);
 		free_strings_array(curr->content);
@@ -64,17 +64,15 @@ int	check_arg(char *arg, int *num)
 		return (1);
 	while (arg[pos])
 	{
-		if (!(arg[pos] == '\n' && arg[pos + 1] == 0)
-			&& !ft_isdigit(arg[pos]))
+		if (!ft_isdigit(arg[pos]))
 			return (1);
 		pos++;
 	}
 	*num = ft_atoi(arg);
-	pos--;
 	if (*num == 0)
 	{
-		while (pos)
-			if (arg[pos--] != '0')
+		while (--pos)
+			if (arg[pos] != '0')
 				return (1);
 		if (arg[pos] != '0' && arg[pos] != '+' && arg[pos] != '-')
 			return (1);

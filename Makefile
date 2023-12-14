@@ -1,13 +1,14 @@
 NAME = fdf
 
-SRCS_F = file_reader.c create_list.c convert_lines_to_int_arrays.c convert_lines_to_strings_arrays.c clear_tlist_mixed.c \
-	   free_strings_array.c check_arrays_len.c convert_strings_arrays_to_int_arrays.c list_to_map.c list_to_int_arrays.c 
+SRCS_F = main.c file_reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c convert_lines_to_strings_arrays.c clear_tlist_mixed.c \
+	   free_strings_array.c remove_newline_arrays.c check_arrays_len.c convert_strings_arrays_to_int_arrays.c list_to_map.c \
+	   list_to_int_arrays.c do_nothing.c 
 
 SRCS_P = ./srcs/
 
 LIBFT = libft/libft.a
 
-SRCS = $(addprefix $(SRCS_P), $(SRCS_F)) main.c
+SRCS = $(addprefix $(SRCS_P), $(SRCS_F)) 
 
 GREEN = \033[0;32m
 NC = \033[0m

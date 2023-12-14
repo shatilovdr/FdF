@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 16:34:58 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:39:01 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 
 # include <fcntl.h>
+#include <stdio.h>
 
 typedef struct s_map
 {
@@ -25,12 +26,16 @@ typedef struct s_map
 }	t_map;
 
 t_map	*file_reader(char *filename);
-t_list	*create_list(char *filename);
+int		open_close_file(char *mode, char *filename, int fd);
+char	*read_file(char *filename);
+t_list	*create_list(char *file_content);
+void	do_nothing(void *arg);
 size_t	convert_lines_to_int_arrays(t_list **all_lines);
 void	convert_lines_to_strings_arrays(t_list **all_lines);
 void	clear_tlist_mixed(t_list **list, t_list *switch_point,
 			void (*f1)(void *), void (*f2)(void *));
 void	free_strings_array(void *ptr);
+void	remove_newline_arrays(t_list **all_lines);
 size_t	check_arrays_len(t_list **all_lines);
 void	convert_strings_arrays_to_int_arrays(t_list **all_lines, size_t len);
 int		**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y);

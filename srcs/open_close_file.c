@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_lines_to_int_arrays.c                      :+:      :+:    :+:   */
+/*   open_close_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 11:24:48 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 13:47:27 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/14 16:02:36 by dshatilo          #+#    #+#             */
+/*   Updated: 2023/12/14 18:14:29 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-size_t	convert_lines_to_int_arrays(t_list **all_lines)
+int	open_close_file(char *mode, char *filename, int fd)
 {
-	size_t	line_len;
-
-	convert_lines_to_strings_arrays(all_lines);
-	remove_newline_arrays(all_lines);
-	line_len = check_arrays_len(all_lines);
-	convert_strings_arrays_to_int_arrays(all_lines, line_len);
-	return (line_len);
+	if (!ft_strncmp(mode, "open", 4))
+	{
+		fd = open(filename, O_RDONLY);
+		if (fd < 0)
+			exit (1);
+		return (fd);
+	}
+	else if (!ft_strncmp(mode, "close", 5))
+		if (close(fd) < 0)
+			return (1);
+	return (0);
 }
-
-
-

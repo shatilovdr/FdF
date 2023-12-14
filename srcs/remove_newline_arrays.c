@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_lines_to_int_arrays.c                      :+:      :+:    :+:   */
+/*   remove_newline_arrays.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 11:24:48 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 13:47:27 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/14 13:47:48 by dshatilo          #+#    #+#             */
+/*   Updated: 2023/12/14 14:40:26 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-size_t	convert_lines_to_int_arrays(t_list **all_lines)
+void	remove_newline_arrays(t_list **all_lines)
 {
-	size_t	line_len;
+	t_list	*temp;
+	size_t	i;
+	char	**strings_array;
 
-	convert_lines_to_strings_arrays(all_lines);
-	remove_newline_arrays(all_lines);
-	line_len = check_arrays_len(all_lines);
-	convert_strings_arrays_to_int_arrays(all_lines, line_len);
-	return (line_len);
+	temp = *all_lines;
+	while (temp)
+	{
+		strings_array = (char **)temp->content;
+		i = 0;
+		while (strings_array[i + 1] != NULL)
+			i++;
+		if (*strings_array[i] == '\n')
+		{
+			free(strings_array[i]);
+			strings_array[i] = NULL;
+		}
+		temp = temp->next;
+	}
 }
-
-
-

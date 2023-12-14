@@ -6,38 +6,37 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:55:59 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 14:47:03 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:47:00 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_list	*create_list(char *filename)
+t_list	*create_list(char *file_content)
 {
-	int		fd;
-	char	*curr_line;
+	char	**file_by_lines;
 	t_list	*list;
 	t_list	*temp;
+	size_t	i;
 
-	fd = open(filename, O_RDONLY);
-	if (open < 0)
-		exit (1);
-	curr_line = get_next_line(fd);
+	file_by_lines = ft_split(file_content, '\n');
+	free(file_content);
+	if (!file_by_lines)
+		exit(1);
 	list = 0;
-	while (curr_line)
+	i = 0;
+	while (file_by_lines[i])
 	{
-		temp = ft_lstnew(curr_line);
+		temp = ft_lstnew(file_by_lines[i++]);
 		if (!temp)
 		{
-			free(curr_line);
-			ft_lstclear(&list, free);
-			close(fd);
+			ft_lstclear(&list, do_nothing);
+			free_strings_array(file_by_lines);
 			exit(1);
 		}
 		ft_lstadd_back(&list, temp);
-		curr_line = get_next_line(fd); //How to distinguish EOF and error in gnl?
 	}
-	close(fd);
+	free(file_by_lines);
 	return (list);
 }
-//if gnl ends with error you have to close fd;
+

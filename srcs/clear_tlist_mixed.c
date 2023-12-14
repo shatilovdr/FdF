@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:06:04 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 13:22:01 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:38:53 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	clear_tlist_mixed(t_list **list, t_list *switch_point,
 
 	curr = *list;
 	if (curr == switch_point)
+	{
 		ft_lstclear(list, f2);
+		exit(1);
+	}
 	while (curr->next != switch_point)
 		curr = curr->next;
 	curr->next = NULL;

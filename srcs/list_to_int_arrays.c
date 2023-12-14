@@ -6,13 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:23:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 19:53:50 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:38:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	do_nothing(void *arg);
 
 int	**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y)
 {
@@ -36,9 +34,4 @@ int	**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y)
 	}
 	ft_lstclear(list, do_nothing);
 	return (field);
-}
-
-void	do_nothing(void *arg)
-{
-	(void)arg;
 }
