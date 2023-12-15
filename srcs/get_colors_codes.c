@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_newline_arrays.c                            :+:      :+:    :+:   */
+/*   get_colors_codes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:47:48 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 14:40:26 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/15 19:25:21 by dshatilo          #+#    #+#             */
+/*   Updated: 2023/12/15 19:40:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	remove_newline_arrays(t_list **all_lines)
+void	get_colors_codes(t_list **all_lines, size_t line_len)
 {
-	t_list	*temp;
-	size_t	i;
-	char	**strings_array;
+	t_list	*curr;
+	char	**color_arr;
 
-	temp = *all_lines;
-	while (temp)
+	curr = *all_lines;
+	while (curr)
 	{
-		strings_array = (char **)temp->content;
-		i = 0;
-		while (strings_array[i + 1] != NULL)
-			i++;
-		if (*strings_array[i] == '\n')
-		{
-			free(strings_array[i]);
-			strings_array[i] = NULL;
-		}
-		temp = temp->next;
+		color_arr = curr_line_colors((char **)curr->content, line_len);
+		if (!color_arr)
+			clear_tlist_mixed(); 
+
 	}
+}
+
+char	**curr_line_colors(char **strings_arr, size_t line_len)
+{
+	char	**color_arr;
+
+	color_arr = (char **)ft_calloc(line_len + 1, sizeof(char *));
+
 }
