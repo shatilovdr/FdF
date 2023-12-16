@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_strings_arrays_to_int_arrays.c             :+:      :+:    :+:   */
+/*   strings_arrays_to_int_color_arrays.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:38:37 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 18:47:38 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:57:19 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,31 @@
 int	*check_strings_array(size_t len, char **arr);
 int	check_arg(char *arg, int *num);
 
-void	convert_strings_arrays_to_int_arrays(t_list **all_lines, size_t len)
+void	strings_arrays_to_int_color_arrays(t_list **all_lines, size_t len)
 {
 	t_list	*curr;
-	int		*int_arr;
+	int		**color_and_int;
 
 	curr = *all_lines;
 	while (curr)
 	{
-		int_arr = check_strings_array(len, (char **)curr->content);
-		if (!int_arr)
-			clear_tlist_mixed(all_lines, curr, free, free_strings_array);
-		free_strings_array(curr->content);
-		curr->content = int_arr;
+		color_and_int = (int **)ft_calloc(3, sizeof(int *));
+		if (!color_and_int)
+			clear_tlist_mixed(all_lines, curr, free, free_2d_array);
+		color_and_int[0] = get_color(len, (char **)curr->content);
+		if (!color_and_int[0])
+		{
+			free_2d_array(color_and_int);
+			clear_tlist_mixed(all_lines, curr, free, free_2d_array);
+		}
+		color_and_int[1] = check_strings_array(len, (char **)curr->content);
+		if (!color_and_int[1])
+		{
+			free_2d_array(color_and_int);
+			clear_tlist_mixed(all_lines, curr, free, free_2d_array);
+		}
+		free_2d_array(curr->content);
+		curr->content = color_and_int;
 		curr = curr->next;
 	}
 }

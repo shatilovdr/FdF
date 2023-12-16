@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:24:48 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/15 19:25:03 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:33:59 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ size_t	convert_lines_to_int_arrays(t_list **all_lines)
 
 	convert_lines_to_strings_arrays(all_lines);
 	line_len = check_arrays_len(all_lines);
-	get_colors_codes(all_lines, line_len);
-	convert_strings_arrays_to_int_arrays(all_lines, line_len);
+	strings_arrays_to_int_color_arrays(all_lines, line_len);
 	return (line_len);
 }
 

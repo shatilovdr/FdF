@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:28:56 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/13 14:34:15 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:54:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	convert_lines_to_strings_arrays(t_list **all_lines)
 	{
 		strings_array = ft_split((char *)curr->content, ' ');
 		if (!strings_array)
-			clear_tlist_mixed(all_lines, curr, free_strings_array, free);
+			clear_tlist_mixed(all_lines, curr, free_2d_array, free);
 		free(curr->content);
 		curr->content = strings_array;
 		curr = curr->next;

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:03:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 19:12:34 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:54:41 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	check_arrays_len(t_list **all_lines)
 			len++;
 		if (len != line_len)
 		{
-			ft_lstclear(all_lines, free_strings_array);
+			ft_lstclear(all_lines, free_2d_array);
 			exit(1);
 		}
 		temp = temp->next;

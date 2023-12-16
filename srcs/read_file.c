@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:03:30 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/15 12:35:21 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:02:18 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ char	*get_file_content(int fd, char *file_content)
 
 	buffer = (char *)calloc(10000, sizeof(char));
 	if (!buffer)
+	{
+		free(file_content);
 		return (NULL);
+	}
 	while (file_content)
 	{
 		bytes = read(fd, buffer, 10000);
 		if (bytes == -1)
 		{
+			free(file_content);
 			free(buffer);
 			return (NULL);
 		}

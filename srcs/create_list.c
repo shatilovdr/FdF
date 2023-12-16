@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:55:59 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 18:47:00 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:54:03 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	*create_list(char *file_content)
 		if (!temp)
 		{
 			ft_lstclear(&list, do_nothing);
-			free_strings_array(file_by_lines);
+			free_2d_array(file_by_lines);
 			exit(1);
 		}
 		ft_lstadd_back(&list, temp);
