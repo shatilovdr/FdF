@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 16:59:18 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:57:16 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_map
 {
 	int		**field;
+	int		**colors;
 	size_t	size_x;
 	size_t	size_y;
 }	t_map;
@@ -37,6 +38,7 @@ void	clear_tlist_mixed(t_list **list, t_list *switch_point,
 void	free_2d_array(void *ptr);
 size_t	check_arrays_len(t_list **all_lines);
 void	strings_arrays_to_int_color_arrays(t_list **all_lines, size_t len);
+int		check_color(char *arg, int *num);
 int		**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y);
 t_map	*list_to_map(t_list **list, size_t size_x);
 

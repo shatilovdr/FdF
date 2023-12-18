@@ -2,7 +2,8 @@ NAME = fdf
 
 SRCS_F = main.c reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
 	   convert_lines_to_strings_arrays.c clear_tlist_mixed.c free_2d_array.c check_arrays_len.c \
-	   strings_arrays_to_int_color_arrays.c list_to_map.c list_to_int_arrays.c do_nothing.c 
+	   strings_arrays_to_int_color_arrays.c list_to_map.c list_to_int_arrays.c do_nothing.c \
+	   color.c 
 
 SRCS_P = ./srcs/
 

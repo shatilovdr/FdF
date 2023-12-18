@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:23:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 18:38:35 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/18 23:05:04 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ int	**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y)
 	field = (int **)malloc(sizeof(int *) * size_y);
 	if (!field)
 	{
-		free(map);
-		ft_lstclear(list, free);
+		free(map); //edit this part.
+		ft_lstclear(list, free_2d_array);
 		exit(1);
 	}
 	i = 0;
 	curr = *list;
 	while (i < size_y)
 	{
-		field[i++] = (int *)curr->content;
+		field[i++] = ((int **)(curr->content))[0];
 		curr = curr->next;
 	}
-	ft_lstclear(list, do_nothing);
 	return (field);
 }

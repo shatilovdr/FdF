@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:27:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 17:09:15 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:56:29 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_map	*reader(char *filename)
 	char	*file_content;
 
 	file_content = read_file(filename);
-	all_lines = create_list(file_content); //checked
+	all_lines = create_list(file_content);
 	if (!all_lines)
 		exit(0);
 	size_x = convert_lines_to_int_arrays(&all_lines);
