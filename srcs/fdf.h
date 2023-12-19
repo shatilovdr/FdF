@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/18 22:57:16 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:09:11 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 
 # include <fcntl.h>
 #include <stdio.h>
+# include "../lib/MLX42/include/MLX42/MLX42.h"
+
+# ifndef WIDTH
+#  define WIDTH 256
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 256
+# endif
+# define BPP sizeof(int32_t)
 
 typedef struct s_map
 {
@@ -39,7 +49,10 @@ void	free_2d_array(void *ptr);
 size_t	check_arrays_len(t_list **all_lines);
 void	strings_arrays_to_int_color_arrays(t_list **all_lines, size_t len);
 int		check_color(char *arg, int *num);
-int		**list_to_int_arrays(t_list **list, t_map *map, size_t	size_y);
+int		**list_to_colors(t_list **list, t_map *map, size_t	size_y);
+int		**list_to_field(t_list **list, t_map *map, size_t	size_y);
 t_map	*list_to_map(t_list **list, size_t size_x);
+
+void	draw_img(t_map *map);
 
 #endif
