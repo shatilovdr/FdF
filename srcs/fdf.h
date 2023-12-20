@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/19 18:09:11 by dshatilo         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:20:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 # include "../libft/libft.h"
 
+# include <math.h>
 # include <fcntl.h>
 #include <stdio.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 # ifndef WIDTH
-#  define WIDTH 256
+#  define WIDTH 1500
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 256
+#  define HEIGHT 1500
 # endif
-# define BPP sizeof(int32_t)
 
 typedef struct s_map
 {
@@ -53,6 +53,13 @@ int		**list_to_colors(t_list **list, t_map *map, size_t	size_y);
 int		**list_to_field(t_list **list, t_map *map, size_t	size_y);
 t_map	*list_to_map(t_list **list, size_t size_x);
 
-void	draw_img(t_map *map);
+//drawer
+void	draw_img(t_map *map, mlx_t *mlxs);
+typedef struct s_grid
+{
+	size_t	x;
+	size_t	y;
+	size_t	stp;
+}	t_grid;
 
 #endif
