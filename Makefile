@@ -1,56 +1,46 @@
-NAME = fdf
+#FdF_PROJECT_MAKEFILE
+include lib/libft/.make
+NAME	:=	fdf
 
-SRCS_F = main.c reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
-	   convert_lines_to_strings_arrays.c clear_tlist_mixed.c free_2d_array.c check_arrays_len.c \
-	   strings_arrays_to_int_color_arrays.c list_to_map.c list_to_int_arrays.c do_nothing.c \
-	   color.c draw.c
+SRCS_NAME		:=	main.c reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
+					convert_lines_to_strings_arrays.c clear_tlist_mixed.c free_2d_array.c check_arrays_len.c \
+					strings_arrays_to_int_color_arrays.c list_to_map.c list_to_int_arrays.c do_nothing.c \
+					color.c draw.c
+SRCS_PATH		:=	./srcs/
+SRCS			:=	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-SRCS_P = ./srcs/
+LIBFT_PATH		:=	lib/$(LIBFT_PATH)
+LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
+LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 
-LIBFT = libft/libft.a
-LIBFT_DIR		:= ./libft/
 LIBMLX			:= ./lib/MLX42
+HEADERS			:=	-I $(LIBMLX)/include -I ./ 
+MLX				:=	./lib/MLX42/build/libmlx42.a
+LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework OpenGL -framework AppKit
 
-SRCS = $(addprefix $(SRCS_P), $(SRCS_F))
-OBJS	:= $(SRCS:.c=.o)
-
-GREEN = \033[0;32m
-NC = \033[0m
-
-FLAGS = -Wall -Wextra -Werror -g 
-HEADERS	:= -I $(LIBMLX)/include -I ./ 
-MLX		:= ./lib/MLX42/build/libmlx42.a
-LIBS	:=  -L$(LIBMLX)/build -lmlx42 -L$(LIBFT_DIR) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework OpenGL -framework AppKit
-all: $(NAME) libmlx
-
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+all: $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS) 
+	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS) 
 
 $(NAME): $(SRCS) $(LIBFT) $(MLX)
 	@cc $(FLAGS) $(SRCS) $(LIBFT) $(HEADERS) $(LIBS) -o $(NAME)
-	@echo "$(GREEN)fdf created successfully!$(NC)"
+	@echo "$(GREEN)\n------------->FdF created successfully!<------------$(EC)"
+
+$(LIBFT): $(LIBFT_SOURSES)
+	@$(MAKE) -C $(LIBFT_PATH)
 
 $(MLX):
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-$(LIBFT): 
-	@$(MAKE) -C $(LIBFT_DIR)
-
 clean:
-	@$(MAKE) clean -C $(LIBFT_DIR)
-	@echo "$(GREEN)Helper files removed!$(NC)" 
+	@$(MAKE) clean -C $(LIBFT_PATH)
 	@rm -rf $(LIBMLX)/build
+	@echo "$(GREEN)*.o files removed!$(EC)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) fclean -C $(LIBFT_DIR)
-	@echo "$(GREEN)fdf removed!$(NC)"
-
-
-
+	@$(MAKE) fclean -C $(LIBFT_PATH)
+	@echo "$(GREEN)All files removed!$(EC)"
 
 re: fclean all
-

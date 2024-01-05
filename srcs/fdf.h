@@ -6,34 +6,26 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/20 18:20:54 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:44:59 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libft/libft.h"
+# include "../lib/libft/libft.h"
 
 # include <math.h>
 # include <fcntl.h>
 #include <stdio.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# ifndef WIDTH
-#  define WIDTH 1500
-# endif
-
-# ifndef HEIGHT
-#  define HEIGHT 1500
-# endif
-
 typedef struct s_map
 {
-	int		**field;
-	int		**colors;
-	size_t	size_x;
-	size_t	size_y;
+	int	**field;
+	int	**colors;
+	int	size_x;
+	int	size_y;
 }	t_map;
 
 t_map	*reader(char *filename);
@@ -54,12 +46,17 @@ int		**list_to_field(t_list **list, t_map *map, size_t	size_y);
 t_map	*list_to_map(t_list **list, size_t size_x);
 
 //drawer
-void	draw_img(t_map *map, mlx_t *mlxs);
+
 typedef struct s_grid
 {
-	size_t	x;
-	size_t	y;
-	size_t	stp;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+	int	stp;
 }	t_grid;
+
+void	draw_img(t_map *map, mlx_t *mlxs);
+void	get_clr_coefs(float *color_coefs, int color1, int color2, t_grid grid);
 
 #endif
