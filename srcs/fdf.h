@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/08 14:41:38 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:20:09 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <math.h>
 # include <fcntl.h>
+# include <limits.h>
 #include <stdio.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 

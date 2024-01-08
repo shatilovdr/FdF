@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:06:39 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/08 16:39:18 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:27:12 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char	*get_next_line(int fd);
 
 long	ft_max(long num1, long num2);
 long	ft_min(long num1, long num2);
+long	ft_abs(long value);
 
 #endif

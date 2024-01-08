@@ -27,5 +27,6 @@ fclean: clean
 	@$(MAKE) fclean -C $(PRINTF_PATH)
 	@$(MAKE) fclean -C $(GNL_PATH)
 	@$(MAKE) fclean -C $(AUX_PATH)
+	@echo "$(GREEN)LIBFT REMOVED!$(EC)"
 
 re: fclean all

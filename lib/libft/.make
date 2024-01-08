@@ -22,7 +22,7 @@ GNL_HEADERS		:=	get_next_line.h
 
 #AUXILIARY_FUNCTIONS
 AUX_PATH		:=	auxiliary/
-AUX_SRCS		:=	ft_max.c ft_min.c 
+AUX_SRCS		:=	ft_max.c ft_min.c ft_abs.c
 
 #MAIN_LIBFT
 LIBFT			:=	libft.a
