@@ -1,20 +1,20 @@
 #PRINTF_PROJECT_MAKEFILE
 include ../.make
-NAME	=	libftprintf.a
-OBJ		=	$(PRINTF_SRCS:.c=.o)
+NAME	:=	printf.a
+OBJS	:=	$(PRINTF_SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) 
-	@ar -crs $(NAME) $(OBJ)
-	@ar -crs ../libft.a $(OBJ)
+$(NAME): $(OBJS) 
+	@ar -crs $(NAME) $(OBJS)
+	@ar -crs ../libft.a $(OBJS)
 	@echo "$(GREY)-PRINTF_PRJ is ready$(NC)"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJS)
 
 fclean: clean
 	@rm -f $(NAME)

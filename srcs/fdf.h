@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/04 12:44:59 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:41:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ typedef struct s_grid
 	int	stp;
 }	t_grid;
 
-void	draw_img(t_map *map, mlx_t *mlxs);
+void	draw(t_map *map);
+void	draw_line_x(mlx_image_t *img, t_map *map, t_grid grid);
+void	draw_line_y(mlx_image_t *img, t_map *map, t_grid grid);
 void	get_clr_coefs(float *color_coefs, int color1, int color2, t_grid grid);
 
 #endif

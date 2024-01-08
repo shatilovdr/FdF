@@ -1,4 +1,7 @@
 lib/MLX42/
+lib/libft/*/*.o
+lib/libft/*/*.a
+lib/libft/libft.a
 *.pdf
 .vscode
 *.out

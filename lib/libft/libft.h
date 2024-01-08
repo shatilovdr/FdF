@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:06:39 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/04 12:31:14 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:39:18 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-long	ft_max(long num1, long num2);
-long	ft_min(long num1, long num2);
-
 int		ft_printf(const char *str, ...);
 
 char	*get_next_line(int fd);
+
+long	ft_max(long num1, long num2);
+long	ft_min(long num1, long num2);
 
 #endif

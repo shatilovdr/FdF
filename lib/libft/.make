@@ -8,8 +8,7 @@ LFT_SRCS		:=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 					ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c  ft_putendl_fd.c \
 					ft_putnbr_fd.c ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 					ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
-					ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
-					ft_max.c ft_min.c 
+					ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c 
 
 #PRINTF_PRJ
 PRINTF_PATH		:=	printf/
@@ -21,11 +20,16 @@ GNL_PATH		:=	get_next_line/
 GNL_SRCS		:=	get_next_line.c get_next_line_utils.c
 GNL_HEADERS		:=	get_next_line.h
 
+#AUXILIARY_FUNCTIONS
+AUX_PATH		:=	auxiliary/
+AUX_SRCS		:=	ft_max.c ft_min.c 
+
 #MAIN_LIBFT
 LIBFT			:=	libft.a
 LIBFT_PATH		:=	libft/
 LIBFT_SOURSES	:=	$(addprefix $(LFT_PATH), $(LFT_SRCS)) $(addprefix $(PRINTF_PATH), $(PRINTF_SRCS)) \
 					$(addprefix $(GNL_PATH), $(GNL_SRCS)) $(addprefix $(GNL_PATH), $(GNL_HEADERS)) \
+					$(addprefix $(AUX_PATH), $(AUX_SRCS)) 
 
 #######COLORS_FOR_MESSAGES
 GREEN	=	\033[32m

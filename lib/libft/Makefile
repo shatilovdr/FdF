@@ -8,21 +8,24 @@ $(NAME): $(LIBFT_SOURSES)
 	@echo	"$(GREEN)+--------------------------------------------------------+$(EC)"
 	@echo	"$(GREEN)|                     BUILDING LIBFT                     |$(EC)"
 	@echo	"$(GREEN)+--------------------------------------------------------+$(EC)"
-	@$(MAKE) -C libft/
-	@$(MAKE) -C printf/
-	@$(MAKE) -C get_next_line/
+	@$(MAKE) -C $(LFT_PATH)
+	@$(MAKE) -C $(PRINTF_PATH)
+	@$(MAKE) -C $(GNL_PATH)
+	@$(MAKE) -C $(AUX_PATH)
 	@echo	"$(GREEN)+--------------------------------------------------------+$(EC)"
 	@echo	"$(GREEN)|                     LIBFT IS READY!                    |$(EC)"
 	@echo	"$(GREEN)+--------------------------------------------------------+$(EC)"
 clean:
-	@$(MAKE) clean -C libft/
-	@$(MAKE) clean -C printf/
-	@$(MAKE) clean -C get_next_line/
+	@$(MAKE) clean -C $(LFT_PATH)
+	@$(MAKE) clean -C $(PRINTF_PATH)
+	@$(MAKE) clean -C $(GNL_PATH)
+	@$(MAKE) clean -C $(AUX_PATH)
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) fclean -C libft/
-	@$(MAKE) fclean -C printf/
-	@$(MAKE) fclean -C get_next_line/
+	@$(MAKE) fclean -C $(LFT_PATH)
+	@$(MAKE) fclean -C $(PRINTF_PATH)
+	@$(MAKE) fclean -C $(GNL_PATH)
+	@$(MAKE) fclean -C $(AUX_PATH)
 
 re: fclean all

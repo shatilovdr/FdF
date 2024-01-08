@@ -1,14 +1,14 @@
-#LIBFT_PROJECT_MAKEFILE
+#AUXILIARY_FUNCTIONS_MAKEFILE
 include ../.make
-NAME	:=	libft.a
-OBJS	:=	$(LFT_SRCS:.c=.o)
+NAME	:=	auxiliary.a
+OBJS	:=	$(AUX_SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar -crs $(NAME) $(OBJS)
 	@ar -crs ../libft.a $(OBJS)
-	@echo "$(GREY)-LIBFT_PRJ is ready$(NC)"
+	@echo "$(GREY)-AUXILIARY_FUNCTIONS are ready$(NC)"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
