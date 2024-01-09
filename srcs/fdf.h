@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/08 17:20:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:37:14 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,23 @@ t_map	*list_to_map(t_list **list, size_t size_x);
 
 typedef struct s_grid
 {
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-	int	stp;
+	int			i;
+	int			j;
+	mlx_image_t	*img;
 }	t_grid;
 
+typedef struct s_pix_pair
+{
+	float	x;
+	float	y;
+	int		x1;
+	int		y1;
+	int		color;
+	int		color1;
+}	t_pix_pair;
+
+
 void	draw(t_map *map);
-void	draw_line_x(mlx_image_t *img, t_map *map, t_grid grid);
-void	draw_line_y(mlx_image_t *img, t_map *map, t_grid grid);
-void	get_clr_coefs(float *color_coefs, int color1, int color2, t_grid grid);
+void	draw_lines(t_map *map, t_grid grid, int i, int j);
 
 #endif

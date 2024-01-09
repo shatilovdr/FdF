@@ -16,8 +16,8 @@ LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 LIBMLX			:= ./lib/MLX42
 HEADERS			:=	-I $(LIBMLX)/include -I ./ 
 MLX				:=	./lib/MLX42/build/libmlx42.a
-#LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework OpenGL -framework AppKit
-LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -framework OpenGL -framework AppKit
+LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework OpenGL -framework AppKit
+# LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
