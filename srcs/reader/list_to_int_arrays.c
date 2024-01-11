@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:23:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/19 16:59:12 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:19:40 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 int	**list_to_colors(t_list **list, t_map *map, size_t	size_y)
 {

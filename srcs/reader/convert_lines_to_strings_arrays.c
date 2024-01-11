@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_2d_array.c                                    :+:      :+:    :+:   */
+/*   convert_lines_to_strings_arrays.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 13:21:25 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 16:52:29 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 14:28:56 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:19:26 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-void	free_2d_array(void *ptr)
+void	convert_lines_to_strings_arrays(t_list **all_lines)
 {
-	void	**arr;
-	size_t	i;
+	t_list	*curr;
+	char	**strings_array;
 
-	arr = (void **)ptr;
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	curr = *all_lines;
+	while (curr)
+	{
+		strings_array = ft_split((char *)curr->content, ' ');
+		if (!strings_array)
+			clear_tlist_mixed(all_lines, curr, free_2d_array, free);
+		free(curr->content);
+		curr->content = strings_array;
+		curr = curr->next;
+	}
 }

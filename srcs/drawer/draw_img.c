@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 18:06:55 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:50:19 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/01/11 10:50:44 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:51:12 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void	draw_img(t_map *map, mlx_t *mlx);
-
-void	draw(t_map *map)
-{
-	mlx_t	*mlx;
-
-	mlx = mlx_init(1100, 1100, "MLX42", true);
-	if (mlx)
-		draw_img(map, mlx);
-}
+#include "../fdf.h"
 
 void	draw_img(t_map *map, mlx_t *mlx)
 {
@@ -31,14 +20,17 @@ void	draw_img(t_map *map, mlx_t *mlx)
 
 	ft_bzero(&grid, sizeof(t_grid));
 	grid.img = mlx_new_image(mlx, mlx->width, mlx->height);
+	grid.angle = 10 / (180 / acos(-1));
+	grid.zoom = 50;
+	grid.cos = cos(grid.angle);
+	grid.sin = sin(grid.angle);
 	if (!grid.img)
 		return ;
 	i = 0;
 	j = 0;
-	// draw_lines(map, grid, i, j);
 	while (i < map->size_y)
 	{
-		while (j < map->size_x )
+		while (j < map->size_x)
 		{
 			draw_lines(map, grid, i, j);
 			j++;
@@ -46,7 +38,9 @@ void	draw_img(t_map *map, mlx_t *mlx)
 		j = 0;
 		i++;
 	}
-	mlx_image_to_window(mlx, grid.img, 50, 50);
+	mlx_image_to_window(mlx, grid.img, (grid.img->width - map->size_x * grid.zoom)/ 2,
+		(grid.img->height - map->size_y * grid.zoom) / 2);
+	// mlx_image_to_window(mlx, grid.img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }

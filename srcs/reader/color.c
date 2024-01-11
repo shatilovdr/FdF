@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 22:46:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/18 22:53:15 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:19:19 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 int	dec_color_check(char *arg, int *num);
 int	hex_color_check(char *arg, int *num);

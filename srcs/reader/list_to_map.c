@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:25:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/20 10:21:21 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:19:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 t_map	*list_to_map(t_list **list, size_t size_x)
 {

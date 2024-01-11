@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_lines_to_int_arrays.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 16:29:15 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 10:36:41 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 11:24:48 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:19:22 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-int	main(int argc, char **argv)
+size_t	convert_lines_to_int_arrays(t_list **all_lines)
 {
-	t_map	*map;
-	// FIX MAKEFILE
+	size_t	line_len;
 
-	if (argc != 2)
-		return (0);
-	map = reader(argv[1]);
-	drawer(map);
-	free_2d_array(map->field);
-	free_2d_array(map->colors);
-	free(map);
-	return (0);
+	convert_lines_to_strings_arrays(all_lines);
+	line_len = check_arrays_len(all_lines);
+	strings_arrays_to_int_color_arrays(all_lines, line_len);
+	return (line_len);
 }
+
+
+

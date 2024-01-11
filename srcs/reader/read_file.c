@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:03:30 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 17:02:18 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:20:17 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 char		*get_file_content(int fd, char *file_content);
 static char	*add_to_string(char *s, char *buffer, size_t buf_len);

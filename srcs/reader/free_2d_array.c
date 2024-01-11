@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_close_file.c                                  :+:      :+:    :+:   */
+/*   free_2d_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 16:02:36 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 18:14:29 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 13:21:25 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:19:36 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-int	open_close_file(char *mode, char *filename, int fd)
+void	free_2d_array(void *ptr)
 {
-	if (!ft_strncmp(mode, "open", 4))
-	{
-		fd = open(filename, O_RDONLY);
-		if (fd < 0)
-			exit (1);
-		return (fd);
-	}
-	else if (!ft_strncmp(mode, "close", 5))
-		if (close(fd) < 0)
-			return (1);
-	return (0);
+	void	**arr;
+	size_t	i;
+
+	arr = (void **)ptr;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }

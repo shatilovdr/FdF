@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_tlist_mixed.c                                :+:      :+:    :+:   */
+/*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 13:06:04 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/14 11:38:53 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/12 22:27:46 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:20:19 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-void	clear_tlist_mixed(t_list **list, t_list *switch_point,
-		void (*f1)(void *), void (*f2)(void *))
+t_map	*reader(char *filename)
 {
-	t_list	*curr;
+	t_map	*map;
+	t_list	*all_lines;
+	size_t	size_x;
+	char	*file_content;
 
-	curr = *list;
-	if (curr == switch_point)
-	{
-		ft_lstclear(list, f2);
-		exit(1);
-	}
-	while (curr->next != switch_point)
-		curr = curr->next;
-	curr->next = NULL;
-	ft_lstclear(list, f1);
-	ft_lstclear(&switch_point, f2);
-	exit(1);
+	file_content = read_file(filename);
+	all_lines = create_list(file_content);
+	if (!all_lines)
+		exit(0);
+	size_x = convert_lines_to_int_arrays(&all_lines);
+	map = list_to_map(&all_lines, size_x);
+	return (map);
 }

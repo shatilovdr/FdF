@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arrays_len.c                                 :+:      :+:    :+:   */
+/*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 14:03:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 16:54:41 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/02 17:55:59 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:19:29 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-size_t	check_arrays_len(t_list **all_lines)
+t_list	*create_list(char *file_content)
 {
-	size_t	line_len;
-	size_t	len;
+	char	**file_by_lines;
+	t_list	*list;
 	t_list	*temp;
+	size_t	i;
 
-	line_len = 0;
-	temp = *all_lines;
-	while (((char **)temp->content)[line_len])
-		line_len++;
-	while (temp)
+	file_by_lines = ft_split(file_content, '\n');
+	free(file_content);
+	if (!file_by_lines)
+		exit(1);
+	list = 0;
+	i = 0;
+	while (file_by_lines[i])
 	{
-		len = 0;
-		while (((char **)temp->content)[len])
-			len++;
-		if (len != line_len)
+		temp = ft_lstnew(file_by_lines[i++]);
+		if (!temp)
 		{
-			ft_lstclear(all_lines, free_2d_array);
+			ft_lstclear(&list, do_nothing);
+			free_2d_array(file_by_lines);
 			exit(1);
 		}
-		temp = temp->next;
+		ft_lstadd_back(&list, temp);
 	}
-	return (line_len);
+	free(file_by_lines);
+	return (list);
 }
+

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_lines_to_strings_arrays.c                  :+:      :+:    :+:   */
+/*   clear_tlist_mixed.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 14:28:56 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/16 16:54:21 by dshatilo         ###   ########.fr       */
+/*   Created: 2023/12/13 13:06:04 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 10:19:16 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-void	convert_lines_to_strings_arrays(t_list **all_lines)
+void	clear_tlist_mixed(t_list **list, t_list *switch_point,
+		void (*f1)(void *), void (*f2)(void *))
 {
 	t_list	*curr;
-	char	**strings_array;
 
-	curr = *all_lines;
-	while (curr)
+	curr = *list;
+	if (curr == switch_point)
 	{
-		strings_array = ft_split((char *)curr->content, ' ');
-		if (!strings_array)
-			clear_tlist_mixed(all_lines, curr, free_2d_array, free);
-		free(curr->content);
-		curr->content = strings_array;
-		curr = curr->next;
+		ft_lstclear(list, f2);
+		exit(1);
 	}
+	while (curr->next != switch_point)
+		curr = curr->next;
+	curr->next = NULL;
+	ft_lstclear(list, f1);
+	ft_lstclear(&switch_point, f2);
+	exit(1);
 }

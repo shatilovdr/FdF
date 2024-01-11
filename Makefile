@@ -2,12 +2,20 @@
 include lib/libft/.make
 NAME	:=	fdf
 
-SRCS_NAME		:=	main.c reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
+READER_NAME		:= reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
 					convert_lines_to_strings_arrays.c clear_tlist_mixed.c free_2d_array.c check_arrays_len.c \
 					strings_arrays_to_int_color_arrays.c list_to_map.c list_to_int_arrays.c do_nothing.c \
-					color.c draw.c draw_line.c
+					color.c
+READER_PATH		:= ./srcs/reader/
+READER			:= $(addprefix $(READER_PATH), $(READER_NAME))
+
+DRAWER_NAME		:= drawer.c draw_line.c draw_img.c
+DRAWER_PATH		:= ./srcs/drawer/
+DRAWER			:= $(addprefix $(DRAWER_PATH), $(DRAWER_NAME))
+
+SRCS_NAME		:=	main.c 
 SRCS_PATH		:=	./srcs/
-SRCS			:=	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
+SRCS			:=	$(addprefix $(SRCS_PATH), $(SRCS_NAME)) $(READER) $(DRAWER)
 
 LIBFT_PATH		:=	lib/$(LIBFT_PATH)
 LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
@@ -16,7 +24,7 @@ LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 LIBMLX			:= ./lib/MLX42
 HEADERS			:=	-I $(LIBMLX)/include -I ./ 
 MLX				:=	./lib/MLX42/build/libmlx42.a
-LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework OpenGL -framework AppKit
+LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 # LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -framework OpenGL -framework AppKit
 
 all: $(NAME)

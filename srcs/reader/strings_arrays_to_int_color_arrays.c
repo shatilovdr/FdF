@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:38:37 by dshatilo          #+#    #+#             */
-/*   Updated: 2023/12/18 22:52:00 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:20:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 int	*check_strings_array(size_t len, char **arr);
 int	check_arg(char *arg, int *num);
