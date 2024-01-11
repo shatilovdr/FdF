@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 10:52:38 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:49:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,20 @@ t_map	*list_to_map(t_list **list, size_t size_x);
 
 //drawer
 
-typedef struct s_grid
+typedef struct s_tp
 {
-	mlx_image_t	*img;
-	double		angle;
-	double		cos;
-	double		sin;
+	int			angle;
+	double		cosine;
+	double		sine;
 	double		zoom;
-}	t_grid;
+	int			shift_x;
+	int			shift_y;
+
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_map		*map;
+}	t_tp;
+
 
 typedef struct s_pix_pair
 {
@@ -69,7 +75,9 @@ typedef struct s_pix_pair
 
 
 void	drawer(t_map *map);
-void	draw_img(t_map *map, mlx_t *mlx);
-void	draw_lines(t_map *map, t_grid grid, int i, int j);
+void	tp_initialise(t_tp *tp);
+void	draw_img(t_tp tp);
+void	put_img(t_tp tp);
+void	put_lines(t_tp tp, int i, int j);
 
 #endif

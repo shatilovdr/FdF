@@ -9,7 +9,7 @@ READER_NAME		:= reader.c open_close_file.c read_file.c create_list.c convert_lin
 READER_PATH		:= ./srcs/reader/
 READER			:= $(addprefix $(READER_PATH), $(READER_NAME))
 
-DRAWER_NAME		:= drawer.c draw_line.c draw_img.c
+DRAWER_NAME		:= drawer.c tp.c draw_img.c put_lines.c put_img.c
 DRAWER_PATH		:= ./srcs/drawer/
 DRAWER			:= $(addprefix $(DRAWER_PATH), $(DRAWER_NAME))
 

@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_img.c                                         :+:      :+:    :+:   */
+/*   put_img.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 17:46:05 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 17:49:32 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/01/11 10:50:44 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/11 17:57:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	clear_img(t_tp tp);
-
-void	draw_img(t_tp tp)
-{
-	clear_img(tp);
-	put_img(tp);
-	mlx_image_to_window(tp.mlx, tp.img, 0, 0);
-}
-
-void	clear_img(t_tp tp)
+void	put_img(t_tp tp)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < tp.mlx->height)
+	while (i < tp.map->size_y)
 	{
-		while (j < tp.mlx->width)
+		while (j < tp.map->size_x)
 		{
-			mlx_put_pixel(tp.img, j, i, 0x0);
+			put_lines(tp, i, j);
 			j++;
 		}
 		j = 0;
