@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:06:55 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 18:55:56 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:20:58 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,15 @@ void	track_keys(mlx_key_data_t keydata, void *param)
 		tp->shift_y -= 10;
 	else if (keydata.key == MLX_KEY_DOWN)
 		tp->shift_y += 10;
+	else if (keydata.key == MLX_KEY_I)
+		tp->zoom *= 1.0204081632653061224489795918367346;
+	else if (keydata.key == MLX_KEY_O)
+		tp->zoom *= 0.98;
 	else if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_delete_image(tp->mlx, tp->img);
 		mlx_close_window(tp->mlx);
 	}
+	printf("");
 	draw_img(*tp);
 }
