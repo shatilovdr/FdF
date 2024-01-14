@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:25:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 10:19:54 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:15:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ t_map	*list_to_map(t_list **list, size_t size_x)
 	ft_lstclear(list, free);
 	return (map);
 }
-

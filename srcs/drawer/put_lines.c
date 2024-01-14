@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:52 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 13:23:25 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:17:00 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	put_line(mlx_image_t *img, t_node a, t_node b)
 		a.y += coord_incs[1];
 		i++;
 	}
-
 }
 
 void	get_clr_incs(float *color_incs, int color1, int color2, int steps)

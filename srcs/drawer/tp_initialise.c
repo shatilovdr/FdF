@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:30:37 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 13:35:51 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:26:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_tp	*tp_initialise(t_tp *tp, int width, int height, t_map *map)
 		free(tp);
 		return (NULL);
 	}
-	tp->zoom = 1;
+	tp->zoom = 30;
 	tp->shift_x = (tp->img->width - map->size_x * tp->zoom) / 2;
 	tp->shift_y = (tp->img->height - map->size_y * tp->zoom) / 2;
 	tp->map = map;

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:27:46 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 10:20:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:00:32 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ t_map	*reader(char *filename)
 		exit(0);
 	size_x = convert_lines_to_int_arrays(&all_lines);
 	map = list_to_map(&all_lines, size_x);
+	map->max = max_2d_array(map->field, map->size_y, map->size_x);
+	map->min = min_2d_array(map->field, map->size_y, map->size_x);
 	return (map);
 }

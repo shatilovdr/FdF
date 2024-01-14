@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:03:30 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 10:20:17 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:16:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char		*get_file_content(int fd, char *file_content);
 static char	*add_to_string(char *s, char *buffer, size_t buf_len);
 static char	*ft_strncpy(char *dest, char *src, size_t n);
 void		check_newlines(char *file_content);
-
 
 char	*read_file(char *filename)
 {

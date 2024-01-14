@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:06:55 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 13:28:56 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 22:54:16 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,17 @@ void	track_keys(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_1)
 		tp->alpha += 2;
 	else if (keydata.key == MLX_KEY_2)
-		tp->beta += 2;
+		tp->alpha -= 2;
 	else if (keydata.key == MLX_KEY_3)
+		tp->beta += 2;
+	else if (keydata.key == MLX_KEY_4)
+		tp->beta -= 2;
+	else if (keydata.key == MLX_KEY_5)
 		tp->gamma += 2;
+	else if (keydata.key == MLX_KEY_6)
+		tp->gamma -= 2;
+	else if (keydata.key == MLX_KEY_C)
+		tp->color_mode = (tp->color_mode + 1) % 2;
 	else if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_delete_image(tp->mlx, tp->img);

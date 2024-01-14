@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 13:06:04 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:15:05 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_map
 	int	**colors;
 	int	size_x;
 	int	size_y;
+	int	max;
+	int	min;
 }	t_map;
 
 t_map	*reader(char *filename);
@@ -45,6 +47,8 @@ int		check_color(char *arg, int *num);
 int		**list_to_colors(t_list **list, t_map *map, size_t	size_y);
 int		**list_to_field(t_list **list, t_map *map, size_t	size_y);
 t_map	*list_to_map(t_list **list, size_t size_x);
+int		max_2d_array(int **arr, int size_y, int size_x);
+int		min_2d_array(int **arr, int size_y, int size_x);
 
 //drawer
 
@@ -54,11 +58,11 @@ typedef struct s_tp
 	double		zoom;
 	int			shift_x;
 	int			shift_y;
+	int			color_mode;
 	int			alpha;
 	int			beta;
 	int			gamma;
 	double		**r_mtx;
-
 
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -77,7 +81,6 @@ typedef struct s_pix_pair
 	t_node	a;
 	t_node	b;
 }	t_pix_pair;
-
 
 void	drawer(t_map *map);
 t_tp	*tp_initialise(t_tp *tp, int width, int height, t_map *map);
