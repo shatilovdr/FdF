@@ -6,40 +6,35 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:52 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/11 18:52:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/14 13:23:25 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	put_line(mlx_image_t *img, t_pix_pair pair);
-void	get_clr_incs(float *color_incs, t_pix_pair pair, int steps);
+void	put_line(mlx_image_t *img, t_node a, t_node b);
+void	get_clr_incs(float *color_incs, int color1, int color2, int steps);
 int		color_pixel(float *color_incs, int curr_color, int i);
 
-void	put_lines(t_tp tp, int i, int j)
+void	put_lines(t_tp *tp, int i, int j)
 {
-	t_pix_pair	pair;
+	t_node	a;
+	t_node	b;
 
-	pair.x = tp.shift_x + (j * tp.zoom) * tp.cosine - (i * tp.zoom) * tp.sine;
-	pair.y = tp.shift_y + (j * tp.zoom) * tp.sine + (i * tp.zoom) * tp.cosine;
-	pair.color = tp.map->colors[i][j];
-	if (j != tp.map->size_x - 1)
+	get_screen_coordinates(tp, i, j, &a);
+	if (j != tp->map->size_x - 1)
 	{
-		pair.x1 = tp.shift_x + ((j + 1) * tp.zoom) * tp.cosine - (i * tp.zoom) * tp.sine;
-		pair.y1 = tp.shift_y + ((j + 1) * tp.zoom) * tp.sine + (i * tp.zoom) * tp.cosine;
-		pair.color1 = tp.map->colors[i][j + 1];
-		put_line(tp.img, pair);
+		get_screen_coordinates(tp, i, j + 1, &b);
+		put_line(tp->img, a, b);
 	}
-	if (i != tp.map->size_y - 1)
+	if (i != tp->map->size_y - 1)
 	{
-		pair.x1 = tp.shift_x + (j * tp.zoom) * tp.cosine - ((i + 1) * tp.zoom) * tp.sine;
-		pair.y1 = tp.shift_y + (j * tp.zoom) * tp.sine + ((i + 1) * tp.zoom) * tp.cosine;
-		pair.color1 = tp.map->colors[i + 1][j];
-		put_line(tp.img, pair);
+		get_screen_coordinates(tp, i + 1, j, &b);
+		put_line(tp->img, a, b);
 	}
 }
 
-void	put_line(mlx_image_t *img, t_pix_pair pair)
+void	put_line(mlx_image_t *img, t_node a, t_node b)
 {
 	float	coord_incs[2];
 	float	color_incs[3];
@@ -47,37 +42,33 @@ void	put_line(mlx_image_t *img, t_pix_pair pair)
 	size_t	steps;
 	size_t	i;
 
-	steps = ft_max(ft_abs((long)(pair.x1 - pair.x)),
-			ft_abs((long)(pair.y1 - pair.y)));
-	coord_incs[0] = (pair.x1 - pair.x) / steps;
-	coord_incs[1] = (pair.y1 - pair.y) / steps;
-	get_clr_incs(color_incs, pair, steps);
+	steps = ft_max(ft_abs((long)(b.x - a.x)),
+			ft_abs((long)(b.y - a.y)));
+	coord_incs[0] = (b.x - a.x) / steps;
+	coord_incs[1] = (b.y - a.y) / steps;
+	get_clr_incs(color_incs, a.color, b.color, steps);
 	i = 0;
 	while (i <= steps)
 	{
-		if (pair.x >= 0 && pair.x < img->width
-			&& pair.y >= 0 && pair.y < img->height)
+		if (a.x >= 0 && a.x < img->width
+			&& a.y >= 0 && a.y < img->height)
 		{
-			color = color_pixel(color_incs, pair.color, i);
-			mlx_put_pixel(img, pair.x, pair.y, color);
+			color = color_pixel(color_incs, a.color, i);
+			mlx_put_pixel(img, a.x, a.y, color);
 		}
-		pair.x += coord_incs[0];
-		pair.y += coord_incs[1];
+		a.x += coord_incs[0];
+		a.y += coord_incs[1];
 		i++;
 	}
 
 }
 
-void	get_clr_incs(float *color_incs, t_pix_pair pair, int steps)
+void	get_clr_incs(float *color_incs, int color1, int color2, int steps)
 {
-	int		color1;
-	int		color2;
 	float	r_diff;
 	float	g_diff;
 	float	b_diff;
 
-	color1 = pair.color;
-	color2 = pair.color1;
 	b_diff = color2 % 256 - color1 % 256;
 	color1 = color1 >> 8;
 	color2 = color2 >> 8;
