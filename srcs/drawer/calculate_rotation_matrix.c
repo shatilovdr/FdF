@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calulate_rotation_matrix.c                         :+:      :+:    :+:   */
+/*   calculate_rotation_matrix.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 07:12:33 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 23:17:33 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:36:15 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	calulate_rotation_matrix(t_tp *tp)
+void	calculate_rotation_matrix(t_tp *tp)
 {
 	double	**mtx;
 	double	alpha;
@@ -20,9 +20,9 @@ void	calulate_rotation_matrix(t_tp *tp)
 	double	gamma;
 
 	mtx = tp->r_mtx;
-	alpha = tp->alpha / (180 / acos(-1));
-	beta = tp->beta / (180 / acos(-1));
-	gamma = tp->gamma / (180 / acos(-1));
+	alpha = tp->alpha / (180 / M_PI);
+	beta = tp->beta / (180 / M_PI);
+	gamma = tp->gamma / (180 / M_PI);
 	mtx[0][0] = cos(alpha) * cos(beta);
 	mtx[0][1] = cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma);
 	mtx[0][2] = cos(alpha) * sin(beta) * cos(gamma) + sin(alpha) * sin(gamma);

@@ -9,7 +9,7 @@ READER_NAME		:= reader.c open_close_file.c read_file.c create_list.c convert_lin
 READER_PATH		:= ./srcs/reader/
 READER			:= $(addprefix $(READER_PATH), $(READER_NAME))
 
-DRAWER_NAME		:= drawer.c tp_initialise.c draw_img.c put_img.c calulate_rotation_matrix.c put_lines.c get_screen_coordinates.c rotate_coordinates.c
+DRAWER_NAME		:= drawer.c tp_initialise.c track_keys.c track_scroll.c draw_img.c put_img.c calculate_rotation_matrix.c put_lines.c get_screen_coordinates.c rotate_coordinates.c
 DRAWER_PATH		:= ./srcs/drawer/
 DRAWER			:= $(addprefix $(DRAWER_PATH), $(DRAWER_NAME))
 
@@ -24,8 +24,7 @@ LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 LIBMLX			:= ./lib/MLX42
 HEADERS			:=	-I $(LIBMLX)/include -I ./ 
 MLX				:=	./lib/MLX42/build/libmlx42.a
-# LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
-LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -framework OpenGL -framework AppKit
+LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 all: $(NAME)
 

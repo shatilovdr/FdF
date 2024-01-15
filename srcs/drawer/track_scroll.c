@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   track_scroll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 16:29:15 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/15 12:30:53 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/01/15 13:03:03 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/01/15 13:08:39 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-int	main(int argc, char **argv)
+void	track_scroll(double xdelta, double ydelta, void *param)
 {
-	t_map	*map;
+	t_tp	*tp;
 
-	if (argc != 2)
-		return (0);
-	map = reader(argv[1]);
-	drawer(map);
-	free_2d_array(map->field);
-	free_2d_array(map->colors);
-	free(map);
-	return (0);
+	tp = (t_tp *)param;
+	if (ydelta > 0)
+		tp->zoom *= 1.0204081632653061224489795918367346;
+	else if (ydelta < 0)
+		tp->zoom *= 0.98;
+	(void)xdelta;
+	draw_img(tp);
 }

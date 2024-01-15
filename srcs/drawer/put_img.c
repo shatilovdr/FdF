@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:50:44 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 23:16:44 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:36:41 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_img(t_tp *tp)
 
 	i = 0;
 	j = 0;
-	calulate_rotation_matrix(tp);
+	calculate_rotation_matrix(tp);
 	while (i < tp->map->size_y)
 	{
 		while (j < tp->map->size_x)

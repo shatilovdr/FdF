@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 23:15:05 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:42:37 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-#include <stdio.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_map
@@ -50,15 +49,14 @@ t_map	*list_to_map(t_list **list, size_t size_x);
 int		max_2d_array(int **arr, int size_y, int size_x);
 int		min_2d_array(int **arr, int size_y, int size_x);
 
-//drawer
-
 typedef struct s_tp
 {
 	int			mode;
+	int			color_mode;
+	int			inverse_mode;
 	double		zoom;
 	int			shift_x;
 	int			shift_y;
-	int			color_mode;
 	int			alpha;
 	int			beta;
 	int			gamma;
@@ -76,19 +74,15 @@ typedef struct s_node
 	double	color;
 }	t_node;
 
-typedef struct s_pix_pair
-{
-	t_node	a;
-	t_node	b;
-}	t_pix_pair;
-
 void	drawer(t_map *map);
 t_tp	*tp_initialise(t_tp *tp, int width, int height, t_map *map);
+void	track_keys(mlx_key_data_t keydata, void *param);
 void	draw_img(t_tp *tp);
 void	put_img(t_tp *tp);
 void	put_lines(t_tp *tp, int i, int j);
 void	get_screen_coordinates(t_tp *tp, int i, int j, t_node *node);
-void	calulate_rotation_matrix(t_tp *tp);
+void	calculate_rotation_matrix(t_tp *tp);
 void	rotate_coordinates(t_tp *tp, int i, int j, double *coordinates);
+void	track_scroll(double xdelta, double ydelta, void *param);
 
 #endif
