@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 11:10:14 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/15 15:40:48 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:38:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 void	apply_projection(double *coordinates, t_node *node, int mode);
 void	apply_color_inversion(t_node *node);
+void	apply_height_dependency(t_tp *tp, t_node *node, int i, int j);
 
 void	get_screen_coordinates(t_tp *tp, int i, int j, t_node *node)
 {
 	double	coordinates[3];
-	t_map	*map;
 
-	map = tp->map;
 	rotate_coordinates(tp, i, j, coordinates);
 	apply_projection(coordinates, node, tp->mode);
-	node->x += tp->shift_x;
-	node->y += tp->shift_y;
+	node->x -= (tp->limits.max_x + tp->limits.min_x) / 2;
+	node->y -= (tp->limits.max_y + tp->limits.min_y) / 2;
+	node->x *= tp->zoom;
+	node->y *= tp->zoom;
+	node->x += (double)tp->img->width / 2 + tp->shift_x ;
+	node->y += (double)tp->img->height / 2 + tp->shift_y;
 	if (tp->color_mode < 2)
 		node->color = tp->map->colors[i][j];
 	else
-	{
-		node->color = 0xFFA500;
-		if (map->max == map->min)
-			return ;
-		node->color += ft_abs(map->field[i][j]) / ((long)map->max - map->min)
-			* (0x800080 - 0xFFA500);
-	}
+		apply_height_dependency(tp, node, i, j);
 	if (tp->inverse_mode == 1)
 		apply_color_inversion(node);
 }
@@ -43,8 +40,8 @@ void	apply_projection(double *coordinates, t_node *node, int mode)
 {
 	if (mode == 0 || mode == 1)
 	{
-		node->x = (coordinates[0] - coordinates[1]) * cos(0.5);
-		node->y = (coordinates[0] + coordinates[1]) * sin(0.5) - coordinates[2];
+		node->x = (coordinates[0] - coordinates[1]) * cos(0.6);
+		node->y = (coordinates[0] + coordinates[1]) * sin(0.6) - coordinates[2];
 	}
 	if (mode == 2)
 	{
@@ -70,4 +67,21 @@ void	apply_color_inversion(t_node *node)
 	color += g << 8;
 	color += b;
 	node->color = color;
+}
+
+void	apply_height_dependency(t_tp *tp, t_node *node, int i, int j)
+{
+	double	coef;
+	t_map	*map;
+	int		color_range;
+	int		abs_range;
+
+	map = tp->map;
+	abs_range = ft_abs(map->max - map->min);
+	color_range = 0xFFA500 - 0x800080;
+	node->color = 0x800080;
+	if (map->max == map->min)
+		return ;
+	coef = (double)(map->field[i][j] - map->min) / abs_range;
+	node->color += (int)(coef * color_range);
 }

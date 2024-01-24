@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:24:11 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/15 13:42:37 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:50:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_map
 }	t_map;
 
 t_map	*reader(char *filename);
-int		open_close_file(char *mode, char *filename, int fd);
+int		open_close_file(char *mode, char *filename, int *fd);
 char	*read_file(char *filename);
 t_list	*create_list(char *file_content);
 void	do_nothing(void *arg);
@@ -49,6 +49,14 @@ t_map	*list_to_map(t_list **list, size_t size_x);
 int		max_2d_array(int **arr, int size_y, int size_x);
 int		min_2d_array(int **arr, int size_y, int size_x);
 
+typedef struct s_limits
+{
+	double	min_x;
+	double	min_y;
+	double	max_x;
+	double	max_y;
+}	t_limits;
+
 typedef struct s_tp
 {
 	int			mode;
@@ -61,6 +69,7 @@ typedef struct s_tp
 	int			beta;
 	int			gamma;
 	double		**r_mtx;
+	t_limits	limits;
 
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -84,5 +93,6 @@ void	get_screen_coordinates(t_tp *tp, int i, int j, t_node *node);
 void	calculate_rotation_matrix(t_tp *tp);
 void	rotate_coordinates(t_tp *tp, int i, int j, double *coordinates);
 void	track_scroll(double xdelta, double ydelta, void *param);
+void	apply_projection(double *coordinates, t_node *node, int mode);
 
 #endif

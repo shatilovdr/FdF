@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:10:07 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/15 16:10:36 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/21 23:54:41 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	track_keys(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_O)
 		tp->inverse_mode = 0;
 	else if (keydata.key == MLX_KEY_ESCAPE)
+	{
 		mlx_close_window(tp->mlx);
+		return ;
+	}
 	draw_img(tp);
 }
 

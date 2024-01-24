@@ -1,6 +1,6 @@
 #FdF_PROJECT_MAKEFILE
 include lib/libft/.make
-NAME	:=	fdf
+NAME			:= fdf
 
 READER_NAME		:= reader.c open_close_file.c read_file.c create_list.c convert_lines_to_int_arrays.c \
 					convert_lines_to_strings_arrays.c clear_tlist_mixed.c free_2d_array.c check_arrays_len.c \
@@ -25,14 +25,15 @@ LIBMLX			:= ./lib/MLX42
 HEADERS			:=	-I $(LIBMLX)/include -I ./ 
 MLX				:=	./lib/MLX42/build/libmlx42.a
 LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+# LIBS			:=	-L$(LIBMLX)/build -lmlx42 -L$(LIBFT_PATH) -lft -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS) 
+	@$(CC) $(FLAGS) -lm -c $< -o $@ $(HEADERS) 
 
 $(NAME): $(SRCS) $(LIBFT) $(MLX)
-	@cc $(FLAGS) $(SRCS) $(LIBFT) $(HEADERS) $(LIBS) -o $(NAME)
+	@cc $(FLAGS) -lm $(SRCS) $(LIBFT) $(HEADERS) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)\n------------->FdF created successfully!<------------$(EC)"
 
 $(LIBFT): $(LIBFT_SOURSES)
@@ -44,6 +45,8 @@ $(MLX):
 clean:
 	@$(MAKE) clean -C $(LIBFT_PATH)
 	@rm -rf $(LIBMLX)/build
+	@rm -rf $(NAME).dSYM
+	@rm -rf .DS_Store
 	@echo "$(GREEN)*.o files removed!$(EC)"
 
 fclean: clean

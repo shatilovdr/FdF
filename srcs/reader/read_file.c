@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:03:30 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/01/14 23:16:21 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:00:02 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ char	*read_file(char *filename)
 	char	*file_content;
 	int		fd;
 
-	fd = open_close_file("open", filename, 0);
+	if (open_close_file("open", filename, &fd) != 0)
+		exit(1);
 	file_content = (char *)ft_calloc(1, sizeof(char));
-	if (!file_content)
-		return (0);
-	file_content = get_file_content(fd, file_content);
-	if (open_close_file("close", filename, fd))
+	if (file_content)
+		file_content = get_file_content(fd, file_content);
+	if (open_close_file("close", filename, &fd) != 0)
 	{
-		free(file_content);
+		if (file_content)
+			free(file_content);
 		exit(1);
 	}
+	if (!file_content)
+		exit(0);
 	check_newlines(file_content);
 	return (file_content);
 }
@@ -107,7 +110,15 @@ static char	*ft_strncpy(char *dest, char *src, size_t n)
 void	check_newlines(char *file_content)
 {
 	size_t	i;
+	char	*temp;
 
+	temp = file_content;
+	while (*temp)
+	{
+		if (*temp == '\t')
+			*temp = ' ';
+		temp++;
+	}
 	if (*file_content == '\n')
 	{
 		free(file_content);
