@@ -9,5 +9,3 @@ lib/libft/libft.a
 fdf.dSYM/
 fdf
 fdf_ref
-*.fdf
-test_maps
